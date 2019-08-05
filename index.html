@@ -1,0 +1,33 @@
+<!doctype html>
+<html>
+<head>
+
+  <meta charset="utf-8">
+  <title>pumpkin site</title>
+  <script src="./build/tracking-min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.9.0/p5.js"></script>
+
+</head>
+<body>
+
+<video id="myVideo" width="400" height="300" preload autoplay loop muted></video>
+
+<script>
+  
+  var colors = new tracking.ColorTracker(['magenta', 'cyan', 'yellow','orange','blue','green','white','black','gray','red']);
+
+  colors.on('track', function(event) {
+    if (event.data.length === 0) {
+      // No colors were detected in this frame.
+    } else {
+      event.data.forEach(function(rect) {
+        console.log(rect.x, rect.y, rect.height, rect.width, rect.color);
+      });
+    }
+  });
+
+  tracking.track('#myVideo', colors);
+
+  </script>
+</body>
+</html>
